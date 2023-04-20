@@ -24,7 +24,7 @@ class CalendarRedirectView(APIView):
         authorization_response = f"https://{HOST}{request.get_full_path()}"
         flow.fetch_token(authorization_response=authorization_response)
         credentials = flow.credentials
-        calendar = build("calendar", "v3", credentials=credentials)
+        calendar = build("calendar", "v3", credentials=credentials, static_discovery=False)
         now = datetime.utcnow().isoformat() + "z"
         res = calendar.events().list(
             calendarId='primary',
