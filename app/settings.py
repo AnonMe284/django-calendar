@@ -125,5 +125,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 HOST = environ["HOST"]
 
-if not DEBUG and environ["SECRET_KEY"]:
+if not DEBUG and not environ["SECRET_KEY"]:
     raise Exception("SECRET_KEY missing")
