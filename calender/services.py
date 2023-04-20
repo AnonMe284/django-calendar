@@ -11,5 +11,5 @@ def get_google_oauth_flow(state=None):
         'client_secret.json',
         **kwargs
     )
-    flow.redirect_uri = f"http://{HOST}{reverse('calendar_redirect')}"
+    flow.redirect_uri = f"https://{HOST}{reverse('calendar_redirect')}"
     return flow
