@@ -12,3 +12,5 @@ services:
     environment:
       - DEBUG=True
       - HOST=localhost:8000
+      - PORT=8000
+
