@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Events</title>
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Your upcoming events</h1>
+        <div id="events-parent">
+            {% for event in events %}
+                <div class="event">
+                    <h3>{{ event.summary }}</h3>
+                    <div class="event-item">Location: {{ event.location }}</div>
+                    {% if event.organizer.self %}
+                        <div class="event-item">Organizer: You</div>
+                    {% else %}
+                        <div class="event-item">Organizer: {{ event.organizer.displayName }}</div>
+                    {% endif%}
+                    {% if event.start.dateTime %}
+                        <div class="event-item">From {{ event.start.dateTime }} to {{ event.end.dateTime }}</div>
+                    {% else %}
+                        <div class="event-item">From {{ event.start.date }} to {{ event.end.date }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

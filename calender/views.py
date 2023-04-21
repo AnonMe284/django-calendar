@@ -2,6 +2,7 @@ from googleapiclient.discovery import build
 from rest_framework.views import APIView
 from datetime import datetime
 from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import render
 
 from calender.services import get_google_oauth_flow
 from app.settings import HOST
@@ -30,6 +31,4 @@ class CalendarRedirectView(APIView):
             calendarId='primary',
             timeMin=now, maxResults=10, singleEvents=True, orderBy='startTime').execute()
         events = res.get("items", [])
-        if not events:
-            return JsonResponse([])
-        return JsonResponse(events, safe=False)
+        return render(request, "calender/events.html", context={"events": events})
